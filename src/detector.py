@@ -22,7 +22,7 @@ def run(image_set):
 
             top_k = predictions.argsort()[-5:][::-1]
 
-            labels = ['airplanes', 'bird', 'skys', 'trees']
+            labels = ['bird', 'others']
 
             # 아래 코드는 refactoring이 필요
             order=1
