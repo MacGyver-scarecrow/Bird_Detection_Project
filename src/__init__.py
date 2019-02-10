@@ -1,8 +1,8 @@
 import cv2 as cv
 
-from src import filter
-from src import detector
-from src import image_extractor
+import filter
+import detector
+import image_extractor
 
 def main():
     video = cv.VideoCapture('../video/test.mp4')
