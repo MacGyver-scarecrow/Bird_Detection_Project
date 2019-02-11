@@ -5,7 +5,7 @@ import background_color_mask
 BS_MOG2 = cv.createBackgroundSubtractorMOG2(history=1, varThreshold=500, detectShadows=0)
 
 def hsv(frame):
-    return cv.cvtColor(frame, cv.COLOR_BGR2RGB)
+    return cv.cvtColor(frame, cv.COLOR_BGR2HSV)
 
 def color_extraction(frame, bcea):
     tuning_value = 20 #20정도의 오차는 허용하게 함
@@ -14,6 +14,7 @@ def color_extraction(frame, bcea):
 
     mask = cv.inRange(hsv(frame), lower_boundary_color, upper_boundary_color)
 
+    mask = cv.medianBlur(mask, 3)
     return cv.bitwise_and(frame, frame, mask=mask)
 
 def resize(frame):

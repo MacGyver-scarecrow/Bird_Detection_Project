@@ -8,7 +8,7 @@ import tensorflow as tf
 import background_color_mask
 
 def main():
-    video = cv.VideoCapture('../video/test.mp4')
+    video = cv.VideoCapture('../video/test7.mp4')
     count = 0
     detector.create_graph()
 
