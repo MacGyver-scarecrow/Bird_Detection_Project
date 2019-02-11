@@ -12,6 +12,7 @@ def main():
     count = 0
     detector.create_graph()
 
+    bcea = [0,0,0]
     while(1):
         print(count)
         count = count + 1
@@ -20,7 +21,7 @@ def main():
 
         frame = filter.resize(frame)
 
-        if(count%100==1):
+        if((count%100)==1):
             bcea = background_color_extraction_array = background_color_mask.image_color_cluster(frame)  # 프레임에서 가장 많은 부분을 차지하는 배경색 뽑기
         result_frame = filter.apply_BS_MOG2(frame,bcea)
 
