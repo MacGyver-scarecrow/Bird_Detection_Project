@@ -14,21 +14,12 @@ def create_graph():
 def run(image_set):
     for image in image_set:
 
-        start = time.time()
-
-        print("create_graph부분")
-        print(time.time()-start)
-
         with tf.Session() as sess:
             softmax_tensor = sess.graph.get_tensor_by_name('final_result:0')
-
-            start = time.time()
 
             predictions = sess.run(softmax_tensor,
                                    {'DecodeJpeg/contents:0': image})
 
-            print("sess_run 부분")
-            print(time.time() - start)
             predictions = np.squeeze(predictions)
 
             top_k = predictions.argsort()[-5:][::-1]

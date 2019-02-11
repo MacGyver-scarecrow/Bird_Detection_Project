@@ -29,14 +29,11 @@ def main():
         cv.imshow('result_fram', result_frame)
         image_set = image_extractor.run(frame, result_frame)
 
-        print("걸러진것 개수는 다음과 같다.")
+        print("걸러진 것의 갯수는 다음과 같다.")
         print(len(image_set))
 
-
-        start = time.time()
         if(detector.run(image_set)==0):
-            print("detect no")
-        print(time.time() - start)
+            print("none detecting")
 
         print("-----------------------------")
 
