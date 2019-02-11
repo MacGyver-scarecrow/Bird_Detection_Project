@@ -5,6 +5,7 @@ import detector
 import image_extractor
 import time
 import tensorflow as tf
+import background_color_mask
 
 def main():
     video = cv.VideoCapture('../video/test.mp4')
@@ -19,7 +20,9 @@ def main():
 
         frame = filter.resize(frame)
 
-        result_frame = filter.apply_BS_MOG2(frame)
+        if(count%100==1):
+            bcea = background_color_extraction_array = background_color_mask.image_color_cluster(frame)  # 프레임에서 가장 많은 부분을 차지하는 배경색 뽑기
+        result_frame = filter.apply_BS_MOG2(frame,bcea)
 
         cv.imshow('frame', frame)
         cv.imshow('result_fram', result_frame)
