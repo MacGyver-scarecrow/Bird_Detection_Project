@@ -2,8 +2,8 @@ import numpy as np
 import tensorflow as tf
 import time
 
-modelFullPath = '../model/bird,sky,tree/output_graph.pb'
-labelsFullPath = '../model/airplane,bird,sky,tree/output_labels.txt'
+modelFullPath = '../model/bird,others/output_graph.pb'
+labelsFullPath = '../model/bird,others/output_labels.txt'
 
 def create_graph():
     with tf.gfile.FastGFile(modelFullPath, 'rb') as f:
@@ -35,6 +35,7 @@ def run(image_set):
             top_k = predictions.argsort()[-5:][::-1]
 
 
+            ####이거 아직 해결 안됨!!##################
             #텍스트 파일로 바꿔서 시도해보기
             f = open(labelsFullPath, 'rb')
             lines = f.readlines()

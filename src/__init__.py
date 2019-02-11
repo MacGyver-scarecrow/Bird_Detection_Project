@@ -21,6 +21,8 @@ def main():
 
         result_frame = filter.apply_BS_MOG2(frame)
 
+        cv.imshow('frame', frame)
+        cv.imshow('result_fram', result_frame)
         image_set = image_extractor.run(frame, result_frame)
 
         print("걸러진것 개수는 다음과 같다.")
@@ -33,10 +35,6 @@ def main():
         print(time.time() - start)
 
         print("-----------------------------")
-        cv.imshow('original', frame)
-        cv.imshow('original', result_frame)
-
-
 
         k = cv.waitKey(30) & 0xff
         if k == 27:
