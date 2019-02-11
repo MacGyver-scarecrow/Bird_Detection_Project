@@ -17,8 +17,6 @@ def centroid_histogram(clt):
     # return the histogram
     return hist
 
-
-
 def plot_colors(hist, centroids):
     # initialize the bar chart representing the relative frequency
     # of each of the colors
@@ -51,18 +49,17 @@ def image_color_cluster(image, k=3):
     # print(hist)
     # print(hist.argmax())
     # print("\n")
-    bar = plot_colors(hist, clt.cluster_centers_)
+    # bar = plot_colors(hist, clt.cluster_centers_)
 
     # for center in clt.cluster_centers_:
     #     print(center)
     #
-    plt.figure()
-    plt.axis("off")
-    plt.imshow(bar)
-    plt.show()
+    # plt.figure()
+    # plt.axis("off")
+    # plt.imshow(bar)
+    # plt.show()
     #
     # print('\n')
-
 
     return clt.cluster_centers_[hist.argmax()]
 
