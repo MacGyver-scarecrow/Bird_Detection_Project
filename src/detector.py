@@ -1,7 +1,9 @@
 import numpy as np
 import tensorflow as tf
+import time
 
-modelFullPath = '../model/output_graph.pb'
+modelFullPath = '../model/bird,sky,tree/output_graph.pb'
+labelsFullPath = '../model/airplane,bird,sky,tree/output_labels.txt'
 
 def create_graph():
     with tf.gfile.FastGFile(modelFullPath, 'rb') as f:
@@ -12,17 +14,32 @@ def create_graph():
 
 def run(image_set):
     for image in image_set:
-        create_graph()
+
+        start = time.time()
+
+        print("create_graph부분")
+        print(time.time()-start)
 
         with tf.Session() as sess:
             softmax_tensor = sess.graph.get_tensor_by_name('final_result:0')
+
+            start = time.time()
+
             predictions = sess.run(softmax_tensor,
                                    {'DecodeJpeg/contents:0': image})
+
+            print("sess_run 부분")
+            print(time.time() - start)
             predictions = np.squeeze(predictions)
 
             top_k = predictions.argsort()[-5:][::-1]
 
-            labels = ['bird', 'others']
+
+            #텍스트 파일로 바꿔서 시도해보기
+            f = open(labelsFullPath, 'rb')
+            lines = f.readlines()
+            labels = [str(w) for w in lines]
+            # labels = ['birds', 'others',' ',' ',' ']
 
             # 아래 코드는 refactoring이 필요
             order=1

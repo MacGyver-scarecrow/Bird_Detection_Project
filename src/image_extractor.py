@@ -8,9 +8,8 @@ def run(frame, result):
     for i in range(1, nlabels):
         x, y, width, height, area = stats[i]
 
-        if area > 10:
+        if area > 5:
             imgGrop = frame[y - 20:y + height + 20, x - 20:x + width + 20]
-
             if imgGrop.tobytes() is not b'':
                 temp.append(cv.imencode('.jpg', imgGrop)[1].tostring())
 
