@@ -10,9 +10,7 @@ def main():
 
     detector.create_graph()
 
-    count = 0
     while(1):
-        print(count)
         _, frame = video.read()
 
         frame = filter.resize(frame)
