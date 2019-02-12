@@ -1,8 +1,8 @@
 import numpy as np
 import tensorflow as tf
-import time
 
 modelFullPath = '../model/bird,others/output_graph.pb'
+
 
 def create_graph():
     with tf.gfile.FastGFile(modelFullPath, 'rb') as f:
@@ -13,11 +13,10 @@ def create_graph():
 
 def run(image_set):
     for image in image_set:
-
         with tf.Session() as sess:
-            softmax_tensor = sess.graph.get_tensor_by_name('final_result:0')
+            soft_max_tensor = sess.graph.get_tensor_by_name('final_result:0')
 
-            predictions = sess.run(softmax_tensor,
+            predictions = sess.run(soft_max_tensor,
                                    {'DecodeJpeg/contents:0': image})
 
             predictions = np.squeeze(predictions)
