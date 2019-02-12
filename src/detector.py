@@ -25,12 +25,8 @@ def run(image_set):
 
             labels = ['birds', 'others']
 
-            # 아래 코드는 refactoring이 필요
-            order=1
-            for node_id in top_k:
-                human_string = labels[node_id]
-                order = order+1
-                if ("bird" in human_string) and (order == 2) :
-                    print("BIRD DETECTED!!!")
-                    return 1
+            human_string = labels[top_k[0]]
+            if ("bird" in human_string):
+                print("BIRD DETECTED!!!")
+                return 1
     return 0
